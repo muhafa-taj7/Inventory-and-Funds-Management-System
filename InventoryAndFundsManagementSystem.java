@@ -117,6 +117,10 @@ class InventoryObject extends Funds{
         String output = this.name": \nThis item costs $" + this.price + "\nWishlist amount: " + this.wishlistCount + "\nAmount previously bought: " + purchasedCount;
         return output;
     }
+
+    public static int getCount(){
+        return count;
+    }
 }
 
 class countFRC extends InventoryObject{
