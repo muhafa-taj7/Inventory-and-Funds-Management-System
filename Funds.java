@@ -1,6 +1,6 @@
 //Rana Shui doThis();
 
-class Funds{
+public class Funds{
     public appendToWishlistCost(int a){
 
     }
