@@ -1,10 +1,5 @@
 // MustafaTajammul, Abdurrahim Rana, Shui
 // Inventory and Funds Management System
-class Funds{
-    public appendToWishlistCost(int a){
-
-    }
-}
 
 class InventoryObject extends Funds{
     private String name;
@@ -16,7 +11,7 @@ class InventoryObject extends Funds{
     private static int count=0;
     // counts the number of objects on wishlist
 
-    ArrayList<InventoryObject> items = new ArrayList<InventoryObject>;
+    public ArrayList<InventoryObject> items = new ArrayList<InventoryObject>;
     // an arraylist to keep track of all of the current objects on wishlist
 
     public InventoryObject(String name, int WishlistCount, double price){
@@ -38,7 +33,7 @@ class InventoryObject extends Funds{
             }
         
         else{
-            System.out.print("Invalid Inputs, please enter valid inputs."); 
+            throw new ArithmeticException("Invalid Inputs, please enter valid inputs."); 
             //error message           
         }
     }
@@ -57,7 +52,7 @@ class InventoryObject extends Funds{
         }
 
         else{
-            System.out.print("Invalid Inputs, please enter valid inputs.");            
+            throw new ArithmeticException("Invalid Inputs, please enter valid inputs.");            
         }
     }
     
@@ -73,7 +68,7 @@ class InventoryObject extends Funds{
         }
         else{
             //error message
-            System.out.print("Invalid Inputs, please enter valid inputs.");            
+            throw new ArithmeticException("Invalid Inputs, please enter valid inputs.");            
         }
     }
 
@@ -99,17 +94,17 @@ class InventoryObject extends Funds{
                 }
 
                 else{
-                System.out.print("Invalid funds.");            
+                    throw new ArithmeticException("Invalid funds.");            
                 }
             }
 
             else{
-            System.out.print("Invalid, attempting to buy more than there is in wishlist.");            
+                throw new ArithmeticException("Invalid, attempting to buy more than there is in wishlist.");            
             }
         }
         
         else{
-            System.out.print("Invalid Inputs, please enter valid inputs.");            
+            throw new ArithmeticException("Invalid Inputs, please enter valid inputs.");            
         }
     }
 
@@ -118,6 +113,12 @@ class InventoryObject extends Funds{
         return output;
     }
 
+    public String printObjectWishlist(){
+        String output = "$"+(this.price * this.wishlistCount) + "\t (" + this.wishlistAmount +") "+this.name;
+        return output;
+    }
+
+        
     public static int getCount(){
         return count;
     }
