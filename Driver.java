@@ -20,10 +20,15 @@ public class Driver}{
       int addAmount = scan.nextInt();
       System.out.println("How much does this item cost?");
       int itemCost = scan.nextInt();
+      InventoryObject usermade = new InventoryObject(name,addAmount,itemCost);
     }
+    System.out.println("You made the following object:" + usermade);
+
+    System.out.println("");
     
     System.out.println("There are several different things you can do.\n - Put an item on your wishlist\n - Edit the item on your wishlist\n - ");
-
+    System.out.println("\nHow much money does your team currently have?");
+    
     
   }
 }
