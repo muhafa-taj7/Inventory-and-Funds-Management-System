@@ -123,7 +123,3 @@ public class InventoryObject extends Funds{
         return count;
     }
 }
-
-class countFRC extends InventoryObject{
-    
-}
