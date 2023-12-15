@@ -1,7 +1,8 @@
 // MustafaTajammul, Abdurrahim Rana, Shui
 // Inventory and Funds Management System
+import java.util.*;
 
-public class InventoryObject extends Funds{
+public class InventoryObject{
     private String name;
     private int wishlistCount;
     private double price;
@@ -11,10 +12,12 @@ public class InventoryObject extends Funds{
     private static int count=0;
     // counts the number of objects on wishlist
 
-    public ArrayList<InventoryObject> items = new ArrayList<InventoryObject>;
+    public static ArrayList<InventoryObject> items = new ArrayList<InventoryObject>();
     // an arraylist to keep track of all of the current objects on wishlist
 
-    public InventoryObject(String name, int WishlistCount, double price){
+    public Funds account;
+
+    public InventoryObject(String name, int wishlistCount, double price, Funds account){
         //making sure pre-reqs are met
         if (wishlistCount > 0 && price > 0){
             
@@ -22,10 +25,11 @@ public class InventoryObject extends Funds{
             this.wishlistCount= wishlistCount;
             this.price = price;
             this.purchasedCount = 0;
+            this.account = account;
             count++;
             //setting all the variables equal to what parameters have shown them to be passed
 
-            appendToWishlistCost(price * wishlistCount);
+            account.appendToWishlistCost(price * wishlistCount);
             //adding this to wishlist cost 
 
             addObjectToList();
@@ -38,15 +42,18 @@ public class InventoryObject extends Funds{
         }
     }
 
-    public InventoryObject(String name, double price){
+    public InventoryObject(String name, double price, Funds account){
         //making sure pre-reqs are met
         if (price> 0){
-            this(name, 0, price);
+            this.name = name;
+            this.wishlistCount= 0;
+            this.price = price;
             this.purchasedCount = 0;
+            this.account = account;
             count++;
-            //same thign as in the original constuctor
+            //same thign as in the original constuctor but changed to have 0 as automatic wishlist count
 
-            appendToWishlistCost(price * wishlistCount);
+            account.appendToWishlistCost(price * wishlistCount);
             addObjectToList();
             //same as original constructor
         }
@@ -61,7 +68,7 @@ public class InventoryObject extends Funds{
         //make sure the new amount is positive
         if(newWishlistCount> 0 ){
             //we are adding the new difference in cost to the wishlist cost
-            appendToWishlistCost(this.price * (newWishlistCount-this.wishlistCount))
+            account.appendToWishlistCost(this.price * (newWishlistCount-this.wishlistCount));
             
             //updating the wishlistCount to the new one
             this.wishlistCount = newWishlistCount;
@@ -80,12 +87,11 @@ public class InventoryObject extends Funds{
     public void purchase(int buyAmount){
         if (buyAmount > 0){
             if (buyAmount <= this.wishlistCount){
-                if (Funds.getCurrentFunds() >= this.buyAmount * this.price){
+                if (account.getCurrentFunds() >= (buyAmount * this.price)){
                     //all the if statments are for prereqs
-                    
+                    double totalCost = buyAmount * this.price;
                     //adds the amount we will use to the variable that tracks the amount of funds used
-                    addToFundsUsed(buyAmount * this.price);
-
+                    account.addToFundsUsed(totalCost);
                     //updates the purchasedCount varaibel so that it is accurate on the number of items purchased of this type
                     this.purchasedCount+=buyAmount;
 
@@ -94,7 +100,7 @@ public class InventoryObject extends Funds{
                 }
 
                 else{
-                    throw new ArithmeticException("Invalid funds.");            
+                    throw new ArithmeticException("Insufficient funds.");            
                 }
             }
 
@@ -109,17 +115,20 @@ public class InventoryObject extends Funds{
     }
 
     public String toString(){
-        String output = this.name": \nThis item costs $" + this.price + "\nWishlist amount: " + this.wishlistCount + "\nAmount previously bought: " + purchasedCount;
+        String output = " "+this.name+"\nAccount: "+this.account.getTeamName()+" account\nThis item costs $" + this.price + "\nWishlist amount: " + this.wishlistCount + "\nAmount previously bought: " + purchasedCount;
         return output;
     }
 
-    public String printObjectWishlist(){
-        String output = "$"+(this.price * this.wishlistCount) + "\t (" + this.wishlistAmount +") "+this.name;
+    public static String getObjectWishlist(InventoryObject object){
+        String output = "$"+(object.price * object.wishlistCount) + "\t (" + object.wishlistCount +") "+object.name;
         return output;
     }
-
         
     public static int getCount(){
         return count;
+    }
+
+    public static ArrayList getItemList(){
+        return items;
     }
 }
