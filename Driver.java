@@ -1,3 +1,5 @@
+// MustafaTajammul, Abdurrahim Rana, Shui
+// Driver
 import java.util.*;
 public class Driver{
   public static void main(String[] args){
@@ -63,12 +65,18 @@ public class Driver{
     InventoryObject usermade3 = new InventoryObject(userName,itemCost,fundsAccount);
     System.out.println("\n"+usermade3+"\n");
 
+    //rana
     System.out.println("\nLet's look at our current wishlist");
     fundsAccount.printList();
 
+    //rana
     System.out.println("\nLet's look at our financial history");
     fundsAccount.printFinancialSummary();
 
+    //rana
+    System.out.println("\nThank you for using the Account Funds Management System!");
+    System.out.println("We hope to see you again soon!");
+    
 
     
   }
