@@ -1,3 +1,5 @@
+// MustafaTajammul, Abdurrahim Rana, Shui
+// Funds management
 public class Funds{
     private String teamName;
     private double totalRaisedFunds;

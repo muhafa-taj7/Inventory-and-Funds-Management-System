@@ -92,6 +92,7 @@ public class InventoryObject{
                     double totalCost = buyAmount * this.price;
                     //adds the amount we will use to the variable that tracks the amount of funds used
                     account.addToFundsUsed(totalCost);
+                    account.appendToWishlistCost(-1*totalCost);
                     //updates the purchasedCount varaibel so that it is accurate on the number of items purchased of this type
                     this.purchasedCount+=buyAmount;
 
@@ -113,12 +114,12 @@ public class InventoryObject{
             throw new ArithmeticException("Invalid Inputs, please enter valid inputs.");            
         }
     }
-
+    //uses a tostring to output the result
     public String toString(){
         String output = " "+this.name+"\nAccount: "+this.account.getTeamName()+" account\nThis item costs $" + this.price + "\nWishlist amount: " + this.wishlistCount + "\nAmount previously bought: " + purchasedCount;
         return output;
     }
-
+    // a list of getters
     public static String getObjectWishlist(InventoryObject object){
         String output = "$"+(object.price * object.wishlistCount) + "\t (" + object.wishlistCount +") "+object.name;
         return output;
