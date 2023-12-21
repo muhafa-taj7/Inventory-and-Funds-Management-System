@@ -63,7 +63,40 @@ public class Driver{
     System.out.println("How much does this item cost?");
     itemCost = scan.nextDouble();
     InventoryObject usermade3 = new InventoryObject(userName,itemCost,fundsAccount);
-    System.out.println("\n"+usermade3+"\n");
+    System.out.println("\nYou made the following object:"+usermade3+"\n");
+    
+    scan.next();
+    //rana
+    System.out.println("\nLet's look at our current wishlist");
+    fundsAccount.printList();
+    
+    scan.next();
+    
+    //rana
+    System.out.println("\nLet's look at our financial history");
+    fundsAccount.printFinancialSummary();
+    
+    scan.next();
+
+    System.out.println("Let's make another account for your FLL team!!\nWhat is your team name?");
+    name = scan.next();
+    Funds otherFundsAccount = new Funds(name);
+
+    System.out.println("\nHow much money does your team currently have?");
+    startAmount = scan.nextInt();
+    otherFundsAccount.setCurrentFunds(startAmount);
+
+    System.out.println("\nLets add another object!");  
+    System.out.println("What is the name of your item?");
+    userName = scan.next();
+    scan.nextLine();
+    System.out.println("\nHow many do you want to add to your wishlist?");
+    addAmount = scan.nextInt();
+    System.out.println("\nHow much does this item cost?");
+    itemCost = scan.nextDouble();
+    InventoryObject fllobject1 = new InventoryObject(userName,addAmount,itemCost,otherFundsAccount);
+
+    System.out.println("\nYou made the following object:" + fllobject1.toString());
 
     //rana
     System.out.println("\nLet's look at our current wishlist");
@@ -73,11 +106,8 @@ public class Driver{
     System.out.println("\nLet's look at our financial history");
     fundsAccount.printFinancialSummary();
 
-    //rana
+     //rana
     System.out.println("\nThank you for using the Account Funds Management System!");
-    System.out.println("We hope to see you again soon!");
-    
-
-    
+    System.out.println("We hope to see you again soon!\n");
   }
 }
